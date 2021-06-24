@@ -77,7 +77,7 @@ def create_attention_masks(inputs):
 # CREATE MODEL
 
 def create_model():
-    config=BertConfig.from_pretrained("bert-base-multilingual-uncased", num_labels=1)
+    config=BertConfig.from_pretrained("bert-base-multilingual-uncased", num_labels=2)
     bert=TFBertModel.from_pretrained("bert-base-multilingual-uncased", config=config)
     bert_layer=bert.layers[0]
     input_ids_layer=Input(
