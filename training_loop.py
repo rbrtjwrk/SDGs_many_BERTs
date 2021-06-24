@@ -154,3 +154,4 @@ for _ in tab.columns[4:]:
     test_score=model.evaluate([test_inputs, test_masks], test_labels,
                         batch_size=3)
     print(f"Model for target {_} tested.")
+    
