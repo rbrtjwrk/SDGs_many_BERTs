@@ -14,9 +14,15 @@ from tensorflow.keras.optimizers import Adam
 from keras.metrics import BinaryAccuracy, Precision, Recall
 
 
+# SET PARAMETERS
+
+DATA_PATH=".../SDGs_merged_cleaned_onehot_no_zeros_no_duplicates_no_t13.h5"
+
+SAVE_MODELS_TO=".../"
+
 # READ DATA
 
-tab=pd.read_hdf(".../SDGs_merged_cleaned_onehot_no_zeros_no_duplicates_no_t13.h5")
+tab=pd.read_hdf(DATA_PATH)
 
 
 # SLICE DATA
@@ -76,7 +82,7 @@ def create_attention_masks(inputs):
 
 # CREATE MODEL
 
-def create_model():
+def create_model(label):
     config=BertConfig.from_pretrained("bert-base-multilingual-uncased", num_labels=2)
     bert=TFBertModel.from_pretrained("bert-base-multilingual-uncased", config=config)
     bert_layer=bert.layers[0]
@@ -96,7 +102,8 @@ def create_model():
                     activation="sigmoid")(bert_model[1])
     model=Model(
                 inputs=[input_ids_layer, input_attention_masks_layer],
-                outputs=target_layer)
+                outputs=target_layer,
+                name="model_"+label.replace(".", "_"))
     optimizer=Adam(
                 learning_rate=5e-05,
                 epsilon=1e-08,
@@ -142,14 +149,14 @@ for _ in tab.columns[4:]:
     validation_masks=convert_to_tensor(validation_masks)
     test_masks=convert_to_tensor(test_masks)
     print("Masks converted to tensors.")
-    model=create_model()
+    model=create_model(_)
     print("Model initialized.")
     history=model.fit([train_inputs, train_masks], train_labels,
                         batch_size=3,
                         epochs=3,
                         validation_data=([validation_inputs, validation_masks], validation_labels))
     print(f"Model for {_} target trained.")
-    model.save(...)
+    model.save(SAVE_MODELS_TO+_.replace(".", "_")+".h5")
     print(f"Model for target {_} saved.")
     test_score=model.evaluate([test_inputs, test_masks], test_labels,
                                 batch_size=3)
