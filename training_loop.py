@@ -11,7 +11,7 @@ from tensorflow.keras.layers import Input, Dense
 from tensorflow.keras.initializers import TruncatedNormal
 from tensorflow.keras.models import Model
 from tensorflow.keras.optimizers import Adam
-from keras.metrics import Accuracy, Precision, Recall
+from keras.metrics import BinaryAccuracy, Precision, Recall
 
 
 # READ DATA
@@ -105,7 +105,7 @@ def create_model():
     model.compile(
                 optimizer=optimizer,
                 loss="binary_crossentropy", 
-                metrics=[Accuracy(), Precision(), Recall()])
+                metrics=[BinaryAccuracy(), Precision(), Recall()])
     return model
 
 
@@ -152,6 +152,6 @@ for _ in tab.columns[4:]:
     model.save(...)
     print(f"Model for target {_} saved.")
     test_score=model.evaluate([test_inputs, test_masks], test_labels,
-                        batch_size=3)
+                                batch_size=3)
     print(f"Model for target {_} tested.")
     
