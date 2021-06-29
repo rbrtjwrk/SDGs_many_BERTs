@@ -167,7 +167,7 @@ for _ in tab.columns[4:]:
                                 batch_size=3)
     test_scores.append(test_score)
     print(f"""Model for target {_} tested.
-            .
-            .
-            .""")  
+    .
+    .
+    .""")  
     
