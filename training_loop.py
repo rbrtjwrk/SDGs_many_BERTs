@@ -119,6 +119,9 @@ def create_model(label):
 
 # THE LOOP
 
+histories=[]
+test_scores=[]
+
 for _ in tab.columns[4:]:
     print(f"PROCESSING TARGET {_}...")
     data=slice_data(tab, _)
@@ -156,10 +159,15 @@ for _ in tab.columns[4:]:
                         batch_size=3,
                         epochs=3,
                         validation_data=([validation_inputs, validation_masks], validation_labels))
+    histories.append(history)
     print(f"Model for {_} target trained.")
     model.save(SAVE_MODELS_TO+_.replace(".", "_")+".h5")
     print(f"Model for target {_} saved.")
     test_score=model.evaluate([test_inputs, test_masks], test_labels,
                                 batch_size=3)
-    print(f"Model for target {_} tested.")
+    test_scores.append(test_score)
+    print(f"""Model for target {_} tested.
+            .
+            .
+            .""")  
     
