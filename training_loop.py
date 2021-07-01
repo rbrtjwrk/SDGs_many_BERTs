@@ -174,7 +174,8 @@ for _ in tab.columns[4:]:
 
 # SAVE STATISTICS
 
-stats=pd.DataFrame(list(zip(tab.columns[4:], histories, test_scores)), columns=["target", "history", "test_score"])
+stats=pd.DataFrame(test_scores, columns=["loss", "accuracy", "precision", "recall"])
+stats.insert(loc=0, "target", tab.columns[4:])
 stats.to_excel(SAVE_MODELS_TO+"_stats.xlsx", index=False)
 
 
