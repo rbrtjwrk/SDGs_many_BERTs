@@ -84,8 +84,14 @@ def create_attention_masks(inputs):
 # CREATE MODEL
 
 def create_model(label):
-    config=BertConfig.from_pretrained("bert-base-multilingual-uncased", num_labels=2)
-    bert=TFBertModel.from_pretrained("bert-base-multilingual-uncased", config=config)
+    config=BertConfig.from_pretrained(
+                                    "bert-base-multilingual-uncased",
+                                     num_labels=2,
+                                     hidden_dropout_prob=0.2,
+                                     attention_probs_dropout_prob=0.2)
+    bert=TFBertModel.from_pretrained(
+                                    "bert-base-multilingual-uncased",
+                                    config=config)
     bert_layer=bert.layers[0]
     input_ids_layer=Input(
                         shape=(512),
@@ -95,7 +101,9 @@ def create_model(label):
                                     shape=(512),
                                     name="attention_masks",
                                     dtype="int32")
-    bert_model=bert_layer(input_ids_layer, input_attention_masks_layer)
+    bert_model=bert_layer(
+                        input_ids_layer,
+                        input_attention_masks_layer)
     target_layer=Dense(
                     units=1,
                     kernel_initializer=TruncatedNormal(stddev=config.initializer_range),
