@@ -12,6 +12,7 @@ from tensorflow.keras.initializers import TruncatedNormal
 from tensorflow.keras.models import Model
 from tensorflow.keras.optimizers import Adam
 from keras.metrics import BinaryAccuracy, Precision, Recall
+import time
 
 
 # SET PARAMETERS
@@ -129,9 +130,11 @@ def create_model(label):
 
 histories=[]
 test_scores=[]
+elapsed_times=[]
 
 for _ in tab.columns[4:]:
     print(f"PROCESSING TARGET {_}...")
+    start_time=time.process_time()
     data=slice_data(tab, _)
     print("Data sliced.")
     abstracts, labels=data_to_values(data)
@@ -173,6 +176,7 @@ for _ in tab.columns[4:]:
     print(f"Model for target {_} saved.")
     test_score=model.evaluate([test_inputs, test_masks], test_labels,
                                 batch_size=3)
+    elapsed_times.append(time.process_time()-start_time)
     test_scores.append(test_score)
     print(f"""Model for target {_} tested.
     .
@@ -184,6 +188,7 @@ for _ in tab.columns[4:]:
 
 stats=pd.DataFrame(test_scores, columns=["loss", "accuracy", "precision", "recall"])
 stats.insert(loc=0, "target", tab.columns[4:])
+stats.insert(loc=5, "elapsed_time", elapsed_times)
 stats.to_excel(SAVE_MODELS_TO+"_stats.xlsx", index=False)
 
 
