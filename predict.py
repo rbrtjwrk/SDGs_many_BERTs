@@ -13,7 +13,7 @@ def models_predict(directory, inputs, attention_masks, float_to_percent=False):
     For predictions, inputs are expected to be:
     tensors of token's ids (bert vocab) and tensors of attention masks.
     Output is of format:
-    {'model/target N': [the probability of a text N dealing with the target N , ...],}"""
+    {'model/target N': [the probability of a text N dealing with the target N , ...], ...}"""
     models=glob.glob(f"{directory}*.h5")
     predictions_dict={}
     for _ in models:
@@ -29,7 +29,7 @@ def models_predict(directory, inputs, attention_masks, float_to_percent=False):
   
 def predictions_dict_to_df(predictions_dictionary):
     """Converts model's predictions of format:
-    {'model/target N': [the probability of a text N dealing with the target N , ...],}
+    {'model/target N': [the probability of a text N dealing with the target N , ...], ...}
     to a dataframe of format:
     | text N | the probability of the text N dealing with the target N | ... |"""
     predictions_tab=pd.DataFrame(predictions_dictionary)
@@ -37,3 +37,16 @@ def predictions_dict_to_df(predictions_dictionary):
     predictions_tab.insert(0, column="text", value=[_ for _ in range(len(predictions_tab))])
     return predictions_tab
   
+
+ def predictions_above_treshold(predictions_df, treshold=0.95):
+    """Filters predictions above specified treshold.
+    Input is expected to be a dataframe of format:
+    | text N | the probability of the text N dealing with the target N | ... |
+    Output is of format:
+    {text N: [target N dealing with probability > trheshold with text N, ...], }
+    """
+    above_treshold_dict={}
+    above_treshold=predictions_df.iloc[:,1:].apply(lambda row: row[row > treshold].index, axis=1)
+    for _ in range(len(above_treshold)):
+        above_treshold_dict[_]=list(above_treshold[_])
+    return above_treshold_dict
