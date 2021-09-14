@@ -3,13 +3,13 @@ import glob
 import tensorflow as tf
 
 def float_to_percent(float, decimal=3):
-    """This function takes a float from range 0. to 0.9... as input
+    """Takes a float from range 0. to 0.9... as input
     and converts it to a percentage with specified decimal places."""
     return str(float*100)[:(decimal+3)]+"%"
 
   
 def models_predict(directory, inputs, attention_masks):
-    """This function loads separate .h5 models from a given directory.
+    """Loads separate .h5 models from a given directory.
     For predictions, inputs are expected to be:
     tensors of token's ids (bert vocab) and tensors of attention masks.
     Output is of format:
@@ -27,7 +27,7 @@ def models_predict(directory, inputs, attention_masks):
 
   
 def predictions_dict_to_df(predictions_dictionary):
-    """This funciton converts model's predictions of format:
+    """Converts model's predictions of format:
     {'model/target N': [the probability of a text N dealing with the target N , ...],}
     to a dataframe of format:
     | text N | the probability of the text N dealing with the target N | ... |"""
