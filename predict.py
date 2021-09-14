@@ -8,8 +8,8 @@ def float_to_percent(float, decimal=3):
     return str(float*100)[:(decimal+3)]+"%"
 
   
-def models_predict(directory, inputs, attention_masks):
-    """Loads separate .h5 models from a given directory.
+def models_predict(directory, inputs, attention_masks, float_to_percent=False):
+    """This function loads separate .h5 models from a given directory.
     For predictions, inputs are expected to be:
     tensors of token's ids (bert vocab) and tensors of attention masks.
     Output is of format:
@@ -20,7 +20,8 @@ def models_predict(directory, inputs, attention_masks):
         model=tf.keras.models.load_model(_)
         predictions=model.predict_step([inputs, attention_masks])
         predictions=[float(_) for _ in predictions]
-        predictions=[float_to_percent(_) for _ in predictions]
+        if float_to_percent==True:
+            predictions=[float_to_percent(_) for _ in predictions]
         predictions_dict[model.name]=predictions
         del predictions, model
     return predictions_dict
