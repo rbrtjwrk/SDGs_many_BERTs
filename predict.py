@@ -9,7 +9,7 @@ def float_to_percent(float, decimal=3):
 
   
 def models_predict(directory, inputs, attention_masks, float_to_percent=False):
-    """This function loads separate .h5 models from a given directory.
+    """Loads separate .h5 models from a given directory.
     For predictions, inputs are expected to be:
     tensors of token's ids (bert vocab) and tensors of attention masks.
     Output is of format:
