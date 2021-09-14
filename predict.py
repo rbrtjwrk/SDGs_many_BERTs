@@ -32,13 +32,13 @@ def predictions_dict_to_df(predictions_dictionary):
     {'model/target N': [the probability of a text N dealing with the target N , ...], ...}
     to a dataframe of format:
     | text N | the probability of the text N dealing with the target N | ... |"""
-    predictions_tab=pd.DataFrame(predictions_dictionary)
-    predictions_tab.columns=[_.replace("model_", "").replace("_", ".") for _ in predictions_tab.columns]
-    predictions_tab.insert(0, column="text", value=[_ for _ in range(len(predictions_tab))])
-    return predictions_tab
+    predictions_df=pd.DataFrame(predictions_dictionary)
+    predictions_df.columns=[_.replace("model_", "").replace("_", ".") for _ in predictions_df.columns]
+    predictions_df.insert(0, column="text", value=[_ for _ in range(len(predictions_df))])
+    return predictions_df
   
 
- def predictions_above_treshold(predictions_df, treshold=0.95):
+ def predictions_above_treshold(predictions_dataframe, treshold=0.95):
     """Filters predictions above specified treshold.
     Input is expected to be a dataframe of format:
     | text N | the probability of the text N dealing with the target N | ... |
@@ -46,7 +46,8 @@ def predictions_dict_to_df(predictions_dictionary):
     {text N: [target N dealing with probability > trheshold with text N, ...], }
     """
     above_treshold_dict={}
-    above_treshold=predictions_df.iloc[:,1:].apply(lambda row: row[row > treshold].index, axis=1)
+    above_treshold=predictions_dataframe.iloc[:,1:].apply(lambda row: row[row > treshold].index, axis=1)
     for _ in range(len(above_treshold)):
         above_treshold_dict[_]=list(above_treshold[_])
     return above_treshold_dict
+
