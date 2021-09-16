@@ -46,7 +46,7 @@ def predictions_dict_to_df(predictions_dictionary):
     Input is expected to be a dataframe of format:
     | text N | the probability of the text N dealing with the target N | ... |
     Output is of format:
-    {text N: [target N dealing with probability > trheshold with text N, ...], }
+    {text N: [target N dealing with probability > trheshold with text N, ...], ...}
     """
     above_treshold_dict={}
     above_treshold=predictions_dataframe.iloc[:,1:].apply(lambda row: row[row > treshold].index, axis=1)
