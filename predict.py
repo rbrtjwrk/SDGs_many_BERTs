@@ -30,7 +30,7 @@ tokenizer=BertTokenizer.from_pretrained('bert-base-multilingual-uncased')
 
 def b_tokenize_abstracts(t_abstracts, max_len=512):
     """Tokenizes sentences with the help
-    of 'bert-base-multilingual-uncased' tokenizer.
+    of a 'bert-base-multilingual-uncased' tokenizer.
     """
     b_t_abstracts=[tokenizer.tokenize(_)[:max_len] for _ in t_abstracts]
     return b_t_abstracts
@@ -67,7 +67,7 @@ def create_attention_masks(inputs):
 
 
 def float_to_percent(float, decimal=3):
-    """Takes a float from range 0. to 0.9... as input
+    """Takes a float from range 0. to 0.9... as an input
     and converts it to a percentage with specified decimal places.
     """
     return str(float*100)[:(decimal+3)]+"%"
@@ -117,4 +117,5 @@ def predictions_dict_to_df(predictions_dictionary):
     for _ in range(len(above_treshold)):
         above_treshold_dict[_]=list(above_treshold[_])
     return above_treshold_dict
+
 
