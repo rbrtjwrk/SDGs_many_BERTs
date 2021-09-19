@@ -1,6 +1,70 @@
 import pandas as pd
 import glob
+from nltk import tokenize
+from transformers import BertTokenizer, TFBertModel, BertConfig
+from transformers.utils.dummy_tf_objects import TFBertMainLayer
 import tensorflow as tf
+from tensorflow import convert_to_tensor
+from tensorflow.keras.layers import Input, Dense
+from tensorflow.keras.initializers import TruncatedNormal
+from tensorflow.keras.models import Model
+from tensorflow.keras.optimizers import Adam
+from keras.metrics import BinaryAccuracy, Precision, Recall
+
+
+def tokenize_abstracts(abstracts):
+    """For a given texts, adds '[CLS]' and '[SEP]' tokens
+    at the beginning and the end of each sentence, respectively.
+    """
+    t_abstracts=[]
+    for abstract in abstracts:
+        t_abstract="[CLS] "
+        for sentence in tokenize.sent_tokenize(abstract):
+            t_abstract=t_abstract + sentence + " [SEP] "
+        t_abstracts.append(t_abstract)
+    return t_abstracts
+
+
+tokenizer=BertTokenizer.from_pretrained('bert-base-multilingual-uncased')
+
+
+def b_tokenize_abstracts(t_abstracts, max_len=512):
+    """Tokenizes sentences with the help
+    of 'bert-base-multilingual-uncased' tokenizer.
+    """
+    b_t_abstracts=[tokenizer.tokenize(_)[:max_len] for _ in t_abstracts]
+    return b_t_abstracts
+
+
+def convert_to_ids(b_t_abstracts):
+    """Converts tokens to its specific
+    IDs in a bert vocabulary.
+    """
+    input_ids=[tokenizer.convert_tokens_to_ids(_) for _ in b_t_abstracts]
+    return input_ids
+
+
+def pad_ids(input_ids, max_len=512):
+    """Padds sequences of a given IDs.
+    """
+    p_input_ids=pad_sequences(input_ids,
+                              maxlen=max_len,
+                              dtype="long",
+                              truncating="post",
+                              padding="post")
+    return p_input_ids
+
+
+def create_attention_masks(inputs):
+    """Creates attention masks
+    for a given seuquences.
+    """
+    masks=[]
+    for seq in inputs:
+        seq_mask=[float(i>0) for i in seq]
+        masks.append(seq_mask)
+    return masks
+
 
 def float_to_percent(float, decimal=3):
     """Takes a float from range 0. to 0.9... as input
@@ -53,5 +117,4 @@ def predictions_dict_to_df(predictions_dictionary):
     for _ in range(len(above_treshold)):
         above_treshold_dict[_]=list(above_treshold[_])
     return above_treshold_dict
-
 
