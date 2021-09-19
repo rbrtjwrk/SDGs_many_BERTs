@@ -105,7 +105,7 @@ def predictions_dict_to_df(predictions_dictionary):
     return predictions_df
   
 
- def predictions_above_treshold(predictions_dataframe, treshold=0.95):
+def predictions_above_treshold(predictions_dataframe, treshold=0.95):
     """Filters predictions above specified treshold.
     Input is expected to be a dataframe of format:
     | text N | the probability of the text N dealing with the target N | ... |
