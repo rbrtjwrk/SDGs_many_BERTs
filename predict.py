@@ -13,6 +13,15 @@ from tensorflow.keras.optimizers import Adam
 from keras.metrics import BinaryAccuracy, Precision, Recall
 
 
+# SET PARAMETERS
+
+MODELS_PATH=".../"
+
+SAVE_PREDICTIONS_TO=".../"
+
+
+# PREPROCESS TEXTS
+
 def tokenize_abstracts(abstracts):
     """For a given texts, adds '[CLS]' and '[SEP]' tokens
     at the beginning and the end of each sentence, respectively.
@@ -67,6 +76,8 @@ def create_attention_masks(inputs):
     return masks
 
 
+# PREDICT
+
 def float_to_percent(float, decimal=3):
     """Takes a float from range 0. to 0.9... as an input
     and converts it to a percentage with specified decimal places.
@@ -118,5 +129,3 @@ def predictions_above_treshold(predictions_dataframe, treshold=0.95):
     for _ in range(len(above_treshold)):
         above_treshold_dict[_]=list(above_treshold[_])
     return above_treshold_dict
-
-
