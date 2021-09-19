@@ -3,6 +3,7 @@ import glob
 from nltk import tokenize
 from transformers import BertTokenizer, TFBertModel, BertConfig
 from transformers.utils.dummy_tf_objects import TFBertMainLayer
+from keras.preprocessing.sequence import pad_sequences
 import tensorflow as tf
 from tensorflow import convert_to_tensor
 from tensorflow.keras.layers import Input, Dense
