@@ -30,6 +30,14 @@ tab=pd.read_hdf(DATA_PATH)
 # SLICE DATA
 
 def slice_data(dataframe, label):
+    """Slices dataframe of a structure:
+    | text/abstract | label |
+    Prepares data for a binary classification
+    training. For a given label, creates new
+    dataset where number of items belonging
+    to the given label equals number of randomly
+    generated items from all the other labels items.
+    """
     label_data=dataframe[dataframe[label]==1]
     label_data_len=len(label_data)
     temp_data=dataframe.copy()[dataframe[label]!=1].sample(n=label_data_len)
@@ -42,12 +50,17 @@ def slice_data(dataframe, label):
 # PREPARE DATA FOR BERT
 
 def data_to_values(dataframe):
+    """Converts data to values.
+    """
     abstracts=dataframe.Abstract.values
     labels=dataframe.Label.values
     return abstracts, labels
 
 
 def tokenize_abstracts(abstracts):
+    """For a given texts, adds '[CLS]' and '[SEP]' tokens
+    at the beginning and the end of each sentence, respectively.
+    """
     t_abstracts=[]
     for abstract in abstracts:
         t_abstract="[CLS] "
@@ -60,21 +73,32 @@ def tokenize_abstracts(abstracts):
 tokenizer=BertTokenizer.from_pretrained('bert-base-multilingual-uncased')
 
 def b_tokenize_abstracts(t_abstracts, max_len=512):
+    """Tokenizes sentences with the help
+    of a 'bert-base-multilingual-uncased' tokenizer.
+    """
     b_t_abstracts=[tokenizer.tokenize(_)[:max_len] for _ in t_abstracts]
     return b_t_abstracts
 
 
 def convert_to_ids(b_t_abstracts):
+    """Converts tokens to its specific
+    IDs in a bert vocabulary.
+    """
     input_ids=[tokenizer.convert_tokens_to_ids(_) for _ in b_t_abstracts]
     return input_ids
 
 
 def pad_ids(input_ids, max_len=512):
+    """Padds sequences of a given IDs.
+    """
     p_input_ids=pad_sequences(input_ids, maxlen=max_len, dtype="long", truncating="post", padding="post")
     return p_input_ids
 
 
 def create_attention_masks(inputs):
+    """Creates attention masks
+    for a given seuquences.
+    """
     masks=[]
     for seq in inputs:
         seq_mask=[float(i>0) for i in seq]
