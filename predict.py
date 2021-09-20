@@ -15,6 +15,8 @@ from keras.metrics import BinaryAccuracy, Precision, Recall
 
 # SET PARAMETERS
 
+DATA=".../"
+
 MODELS_PATH=".../"
 
 SAVE_PREDICTIONS_TO=".../"
@@ -129,3 +131,29 @@ def predictions_above_treshold(predictions_dataframe, treshold=0.95):
     for _ in range(len(above_treshold)):
         above_treshold_dict[_]=list(above_treshold[_])
     return above_treshold_dict
+
+
+# RUN
+
+# abstracts=load list of texts/abstracts
+
+tokenized_abstracts=tokenize_abstracts(abstracts)
+
+b_tokenized_abstracts=b_tokenize_abstracts(tokenized_abstracts)
+
+ids=convert_to_ids(b_tokenized_abstracts)
+
+padded_ids=pad_ids(ids)
+
+masks=create_attention_masks(padded_ids)
+
+masks=convert_to_tensor(masks)
+
+inputs=convert_to_tensor(padded_ids)
+
+predictions=models_predict(directory=MODELS_PATH, inputs, masks)
+
+predictions_df=predictions_dict_to_df(predictions)
+
+predictions_df.to_excel("SAVE_PREDICTIONS_TO/predictions.xlsx", index=False)
+
