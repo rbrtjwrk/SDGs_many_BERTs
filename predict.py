@@ -137,7 +137,7 @@ def predictions_above_treshold(predictions_dataframe, treshold=0.95):
 
 # RUN
 
-# abstracts=load list of texts/abstracts
+# abstracts=load list of texts/abstracts from DATA/
 
 tokenized_abstracts=tokenize_abstracts(abstracts)
 
