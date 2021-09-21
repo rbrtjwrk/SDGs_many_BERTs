@@ -1,4 +1,4 @@
-![](sdg_many_berts.png)
+[](sdg_many_berts.png)
 
 # SDGs many BERTs
 Train and deploy multiple mBERT models to classify SDG targets.
