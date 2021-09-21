@@ -5,19 +5,19 @@ Train and deploy multiple mBERT models to classify SDG targets.
 These scripts were written within [Work Package 5.1](https://alliance.aurora-network.global/work-packages/aurora-sdg-research-dashboard) of the [Aurora Alliance](https://alliance.aurora-network.global/).
 
 ### Sustainable Development Goals (SDGs)
-The Sustainable Development Goals (SDGs), also known as the Global Goals, were adopted by the United Nations in 2015 as a universal call to action to end poverty, protect the planet, and ensure that by 2030 all people enjoy peace and prosperity. [[1]](#1)
+The Sustainable Development Goals (SDGs), also known as the Global Goals, were adopted by the United Nations in 2015 as a universal call to action to end poverty, protect the planet, and ensure that by 2030 all people enjoy peace and prosperity. [[1]](#1) There are 17 SDGs in total and each of them has several targets and indicators; full list of them could be found [here](https://sdg.humanrights.dk/en/goals-and-targets).
 
-| No. | SDG | No. | SDG |
-| --- | --- | --- | --- |
-| 1 | No Poverty | 10 | Reducing Inequality |
-| 2 | Zero Hunger | 11 | Sustainable Cities and Communities |
-| 3 | Good Health and Well-being | 12 | Responsible Consumption and Production |
-| 4 | Quality Education | 13 | Climate Action |
-| 5 | Gender Equality | 14 | Life Below Water |
-| 6 | Clean Water and Sanitation | 15 | Life On Land |
-| 7 | Affordable and Clean Energy | 16 | Peace, Justice, and Strong Institutions |
-| 8 | Decent Work and Economic Growth | 17 | Partnerships for the Goals |
-| 9 | Industry, Innovation and Infrastructure | | |
+| No. | SDG | Num. of targets | No. | SDG | Num. of targets |
+| --- | --- | --- | --- | --- | --- |
+| 1 | No Poverty | 7 | 10 | Reducing Inequality | 10 |
+| 2 | Zero Hunger | 8 | 11 | Sustainable Cities and Communities | 10 |
+| 3 | Good Health and Well-being | 13 | 12 | Responsible Consumption and Production | 11 |
+| 4 | Quality Education | 10 | 13 | Climate Action | 5 |
+| 5 | Gender Equality | 9 | 14 | Life Below Water | 10 |
+| 6 | Clean Water and Sanitation | 8 | 15 | Life On Land | 12 |
+| 7 | Affordable and Clean Energy | 5 | 16 | Peace, Justice, and Strong Institutions | 12 |
+| 8 | Decent Work and Economic Growth | 12 | 17 | Partnerships for the Goals | 19 |
+| 9 | Industry, Innovation and Infrastructure | 8 | | | |
 
 **References** </br>
 <a id="1">[1]</a> [UNDP](https://www.undp.org/sustainable-development-goals)
