@@ -19,5 +19,9 @@ The Sustainable Development Goals (SDGs), also known as the Global Goals, were a
 | 8 | Decent Work and Economic Growth | 12 | 17 | Partnerships for the Goals | 19 |
 | 9 | Industry, Innovation and Infrastructure | 8 | | | |
 
+### The Aurora Alliance
+The Aurora Alliance equips European Universities to provide a diverse student population with the skills and mindset needed to contribute to addressing societal challenges as social entrepreneurs and innovators. The Aurora Alliance shares it’s mission with the Aurora UniversitiesNetwork. Originally formed in 2016, Aurora is a consortium of research intensive universities deeply committed to the social impact of their activities. [[2]](#2)
+
 **References** </br>
 <a id="1">[1]</a> [UNDP](https://www.undp.org/sustainable-development-goals)
+<a id="2">[2]</a> [The Aurora Alliance] (https://alliance.aurora-network.global) 
