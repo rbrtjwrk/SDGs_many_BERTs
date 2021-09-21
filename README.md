@@ -5,7 +5,7 @@ Train and deploy multiple mBERT models to classify SDG targets.
 These scripts were written within [Work Package 5.1](https://alliance.aurora-network.global/work-packages/aurora-sdg-research-dashboard) of the [Aurora Alliance](https://alliance.aurora-network.global/).
 
 ### Sustainable Development Goals (SDGs)
-The Sustainable Development Goals (SDGs), also known as the Global Goals, were adopted by the United Nations in 2015 as a universal call to action to end poverty, protect the planet, and ensure that by 2030 all people enjoy peace and prosperity. [[1]](#1) There are 17 SDGs in total and each of them has several targets and indicators; full list of them could be found [here](https://sdg.humanrights.dk/en/goals-and-targets).
+The Sustainable Development Goals (SDGs), also known as the Global Goals, were adopted by the United Nations in 2015 as a universal call to action to end poverty, protect the planet, and ensure that by 2030 all people enjoy peace and prosperity. [[1]](#1) There are 17 SDGs in total and each of them has several targets and indicators; full list of them could be found for example [here](https://sdg.humanrights.dk/en/goals-and-targets).
 
 | No. | SDG | Num. of targets | No. | SDG | Num. of targets |
 | --- | --- | --- | --- | --- | --- |
