@@ -24,4 +24,5 @@ The Aurora Alliance equips European Universities to provide a diverse student po
 
 **References** </br>
 <a id="1">[1]</a> [UNDP](https://www.undp.org/sustainable-development-goals)
+
 <a id="2">[2]</a> [The Aurora Alliance] (https://alliance.aurora-network.global) 
