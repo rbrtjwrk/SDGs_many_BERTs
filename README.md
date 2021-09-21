@@ -1,4 +1,4 @@
-# SDGs_many_berts
+# SDGs many BERTs
 Train and deploy multiple mBERT models to classify SDG targets.
 
 ## Background
