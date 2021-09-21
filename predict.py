@@ -19,7 +19,7 @@ from keras.metrics import BinaryAccuracy, Precision, Recall
 
 DATA=".../"
 
-MODELS_PATH=".../"
+MODELS=".../"
 
 SAVE_PREDICTIONS_TO=".../"
 
@@ -153,7 +153,7 @@ masks=convert_to_tensor(masks)
 
 inputs=convert_to_tensor(padded_ids)
 
-predictions=models_predict(directory=MODELS_PATH, inputs, masks)
+predictions=models_predict(directory=MODELS, inputs, masks)
 
 predictions_df=predictions_dict_to_df(predictions)
 
