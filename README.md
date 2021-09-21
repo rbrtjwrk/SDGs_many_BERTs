@@ -7,7 +7,7 @@ These scripts were written within [Work Package 5.1](https://alliance.aurora-net
 ### Sustainable Development Goals (SDGs)
 The Sustainable Development Goals (SDGs), also known as the Global Goals, were adopted by the United Nations in 2015 as a universal call to action to end poverty, protect the planet, and ensure that by 2030 all people enjoy peace and prosperity. [[1]](#1)
 
-| SDG | | | |
+| No. | SDG | No. | SDG |
 | --- | --- | --- | --- |
 | 1 | No Poverty | 10 | Reducing Inequality |
 | 2 | Zero Hunger | 11 | Sustainable Cities and Communities |
