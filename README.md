@@ -1,7 +1,7 @@
 ![.](./images/sdg_many_berts.png)
 
 # SDGs many BERTs
-Train and deploy multiple mBERT models to classify SDG targets.
+Train and deploy multiple [mBERT](https://huggingface.co/bert-base-multilingual-uncased) models to classify SDG targets.
 
 ## Background
 These scripts were written within [Work Package 5.1](https://alliance.aurora-network.global/work-packages/aurora-sdg-research-dashboard) of the [Aurora Alliance](https://alliance.aurora-network.global/).
