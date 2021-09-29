@@ -1,7 +1,7 @@
 ![.](./images/sdg_many_berts.png)
 
 # SDGs many BERTs
-Train and deploy multiple [mBERT](https://huggingface.co/bert-base-multilingual-uncased) models to classify SDG targets.
+Train multiple [mBERT](https://huggingface.co/bert-base-multilingual-uncased) models for a binary classification and deploy them for a multiclass-multilabel classification. The _train_ scirpt uses as many models as there are classes in a training set. It overcomes a problem of imbalanced classes in multiclass-multilabel classificaiton by slicing the training data into smaller sets based on individual classes in the following manner: select all instances belonging to class 1; select randomly from the remaining classes the same number of instances as in class 1 to represent class 0. The scrips were written to classify SDG targets.
 
 ## Background
 These scripts were written within [Work Package 5.1](https://alliance.aurora-network.global/work-packages/aurora-sdg-research-dashboard) of the [Aurora Alliance](https://alliance.aurora-network.global/).
