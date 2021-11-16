@@ -12,7 +12,7 @@ from tensorflow.keras.layers import Input, Dense
 from tensorflow.keras.initializers import TruncatedNormal
 from tensorflow.keras.models import Model
 from tensorflow.keras.optimizers import Adam
-from keras.metrics import BinaryAccuracy, Precision, Recall
+from tensorflow.keras.metrics import BinaryAccuracy, Precision, Recall
 
 
 # SET PARAMETERS
