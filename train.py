@@ -172,21 +172,13 @@ for _ in tab.columns[4:]:
     train_inputs, temp_inputs, train_labels, temp_labels=train_test_split(padded_ids, labels, random_state=1993, test_size=0.3)
     validation_inputs, test_inputs, validation_labels, test_labels=train_test_split(temp_inputs, temp_labels, random_state=1993, test_size=0.5)
     print("Data splited into train, validation, test sets.")
-    train_masks=create_attention_masks(train_inputs)
-    validation_masks=create_attention_masks(validation_inputs)
-    test_masks=create_attention_masks(test_inputs)
+    train_masks, validation_masks, test_masks=[create_attention_masks(_) for _ in [train_inputs, validation_inputs, test_inputs]]
     print("Attention masks created.")
-    train_inputs=convert_to_tensor(train_inputs)
-    validation_inputs=convert_to_tensor(validation_inputs)
-    test_inputs=convert_to_tensor(test_inputs)
+    train_inputs, validation_inputs, test inputs=[convert_to_tensor(_) for _ in [train_inputs, validation_inputs, test_inputs]]
     print("Inputs converted to tensors.")
-    train_labels=convert_to_tensor(train_labels)
-    validation_labels=convert_to_tensor(validation_labels)
-    test_labels=convert_to_tensor(test_labels)
+    train_labels, validation_labels, test_labels=[convert_to_tensor(_) for _ in [train_lables, validation_labels, test_labels]]
     print("Labels converted to tensors.")
-    train_masks=convert_to_tensor(train_masks) 
-    validation_masks=convert_to_tensor(validation_masks)
-    test_masks=convert_to_tensor(test_masks)
+    train_masks, validation_masks, test_masks=[convert_to_tensor(_) for _ in [train_masks, validation_masks, test_masks]]
     print("Masks converted to tensors.")
     model=create_model(_)
     print("Model initialized.")
