@@ -58,6 +58,17 @@ def convert_to_ids(b_t_abstracts):
     return input_ids
 
 
+def abstracts_to_ids(abstracts):
+    """Tokenizes abstracts and converts
+    tokens to their specific IDs
+    in a bert vocabulary.
+    """
+    tokenized_abstracts=tokenize_abstracts(abstracts)
+    b_tokenized_abstracts=b_tokenize_abstracts(tokenized_abstracts)
+    ids=convert_to_ids(b_tokenized_abstracts)
+    return ids
+
+
 def pad_ids(input_ids, max_len=512):
     """Padds sequences of a given IDs.
     """
@@ -139,11 +150,7 @@ def predictions_above_treshold(predictions_dataframe, treshold=0.95):
 
 # abstracts=load list of texts/abstracts from DATA/
 
-tokenized_abstracts=tokenize_abstracts(abstracts)
-
-b_tokenized_abstracts=b_tokenize_abstracts(tokenized_abstracts)
-
-ids=convert_to_ids(b_tokenized_abstracts)
+ids=abstracts_to_ids(abstracts)
 
 padded_ids=pad_ids(ids)
 
