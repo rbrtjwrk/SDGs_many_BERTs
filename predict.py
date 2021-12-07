@@ -17,7 +17,7 @@ from tensorflow.keras.metrics import BinaryAccuracy, Precision, Recall
 
 # SET PARAMETERS
 
-DATA=".../"
+DATA="..." # DATA need to be a list of texts
 
 MODELS=".../"
 
@@ -148,7 +148,7 @@ def predictions_above_treshold(predictions_dataframe, treshold=0.95):
 
 # RUN
 
-# abstracts=load list of texts/abstracts from DATA/
+abstracts=DATA
 
 ids=abstracts_to_ids(abstracts)
 
