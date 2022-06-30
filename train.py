@@ -1,23 +1,22 @@
 # IMPORTS
 
 import pandas as pd
-from transformers import BertConfig, BertTokenizer
 from nltk import tokenize
+import time
 from sklearn.model_selection import train_test_split
-from keras.preprocessing.sequence import pad_sequences
+from transformers import BertConfig, BertTokenizer, TFBertModel
+from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow import convert_to_tensor
-from transformers import TFBertModel, BertConfig
 from tensorflow.keras.layers import Input, Dense
 from tensorflow.keras.initializers import TruncatedNormal
 from tensorflow.keras.models import Model
 from tensorflow.keras.optimizers import Adam
-from keras.metrics import BinaryAccuracy, Precision, Recall
-import time
+from tensorflow.keras.metrics import BinaryAccuracy, Precision, Recall
 
 
 # SET PARAMETERS
 
-DATA_PATH=".../SDGs_merged_cleaned_onehot_no_zeros_no_duplicates_no_t13.h5"
+DATA_PATH="..."
 
 SAVE_MODELS_TO=".../"
 
@@ -72,6 +71,7 @@ def tokenize_abstracts(abstracts):
 
 tokenizer=BertTokenizer.from_pretrained('bert-base-multilingual-uncased')
 
+
 def b_tokenize_abstracts(t_abstracts, max_len=512):
     """Tokenizes sentences with the help
     of a 'bert-base-multilingual-uncased' tokenizer.
@@ -102,7 +102,11 @@ def abstracts_to_ids(abstracts):
 def pad_ids(input_ids, max_len=512):
     """Padds sequences of a given IDs.
     """
-    p_input_ids=pad_sequences(input_ids, maxlen=max_len, dtype="long", truncating="post", padding="post")
+    p_input_ids=pad_sequences(input_ids,
+                              maxlen=max_len,
+                              dtype="long",
+                              truncating="post",
+                              padding="post")
     return p_input_ids
 
 
@@ -111,9 +115,9 @@ def create_attention_masks(inputs):
     for a given seuquences.
     """
     masks=[]
-    for seq in inputs:
-        seq_mask=[float(i>0) for i in seq]
-        masks.append(seq_mask)
+    for sequence in inputs:
+        sequence_mask=[float(_>0) for _ in sequence]
+        masks.append(sequence_mask)
     return masks
 
 
@@ -163,11 +167,10 @@ def create_model(label):
 
 # THE LOOP
 
-histories=[]
 test_scores=[]
 elapsed_times=[]
 
-for _ in tab.columns[4:]:
+for _ in tab.columns[4:]: # here you have to specify the index where label’s columns start
     print(f"PROCESSING TARGET {_}...")
     start_time=time.process_time()
     data=slice_data(tab, _)
