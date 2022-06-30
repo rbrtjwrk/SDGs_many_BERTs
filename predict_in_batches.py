@@ -6,11 +6,10 @@ from nltk import tokenize
 from transformers import BertTokenizer, TFBertModel, BertConfig
 from transformers.utils.dummy_tf_objects import TFBertMainLayer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-import tensorflow as tf
 from tensorflow import convert_to_tensor
 from tensorflow.keras.layers import Input, Dense
 from tensorflow.keras.initializers import TruncatedNormal
-from tensorflow.keras.models import Model
+from tensorflow.keras.models import load_model, Model
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.metrics import BinaryAccuracy, Precision, Recall
 
@@ -21,7 +20,7 @@ DATA="..." # DATA need to be a list of texts
 
 MODELS=".../"
 
-SAVE_PREDICTIONS_TO=".../"
+SAVE_PREDICTIONS_TO="..."
 
 
 # PREPROCESS TEXTS
@@ -85,9 +84,9 @@ def create_attention_masks(inputs):
     for a given seuquences.
     """
     masks=[]
-    for seq in inputs:
-        seq_mask=[float(i>0) for i in seq]
-        masks.append(seq_mask)
+    for sequence in inputs:
+        sequence_mask=[float(_>0) for _ in sequence]
+        masks.append(sequence_mask)
     return masks
 
 
@@ -110,7 +109,7 @@ def models_predict(directory, inputs, attention_masks, float_to_percent=False):
     models=glob.glob(f"{directory}*.h5")
     predictions_dict={}
     for _ in models:
-        model=tf.keras.models.load_model(_)
+        model=load_model(_)
         print(f"Model {_} is loaded.")
         predictions=model.predict_step([inputs, attention_masks])
         print(f"Predictions from the model {_} are finished.")
