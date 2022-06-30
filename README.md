@@ -4,7 +4,7 @@
 Train multiple [mBERT](https://huggingface.co/bert-base-multilingual-uncased) models for binary classification and deploy them for multiclass-multilabel classification. The _train_ scirpt uses as many models as there are classes in a training set. It overcomes a problem of imbalanced classes in multiclass-multilabel classificaiton by slicing the training data into smaller sets based on individual classes in the following manner: select all instances belonging to class 1; select randomly from the remaining classes the same number of instances as in class 1 to represent class 0. The scrips were written to classify SDG targets.
 
 #### Requirements
-Tensorflow 2.4.0, Transformers 4.5.0, NLTK 3.6.1, si-kit learn 0.24.1
+Tensorflow 2.4.0, Transformers 4.5.0, NLTK 3.6.1, si-kit learn 0.24.1, Pandas, glob, time
 
 ## Background
 These scripts were written within [Work Package 5.1](https://alliance.aurora-network.global/work-packages/aurora-sdg-research-dashboard) of the [Aurora Alliance](https://alliance.aurora-network.global/).
