@@ -85,7 +85,7 @@ def create_attention_masks(inputs):
     """
     masks=[]
     for sequence in inputs:
-        sequence_mask=[float(i>0) for i in sequence]
+        sequence_mask=[float(_>0) for _ in sequence]
         masks.append(sequence_mask)
     return masks
 
@@ -109,7 +109,7 @@ def models_predict(directory, inputs, attention_masks, float_to_percent=False):
     models=glob.glob(f"{directory}*.h5")
     predictions_dict={}
     for _ in models:
-        model=tf.keras.models.load_model(_)
+        model=load_model(_)
         predictions=model.predict_step([inputs, attention_masks])
         predictions=[float(_) for _ in predictions]
         if float_to_percent==True:
