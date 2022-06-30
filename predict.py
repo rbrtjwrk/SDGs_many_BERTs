@@ -26,7 +26,7 @@ SAVE_PREDICTIONS_TO="..."
 # PREPROCESS TEXTS
 
 def tokenize_abstracts(abstracts):
-    """For a given texts, adds '[CLS]' and '[SEP]' tokens
+    """For given texts, adds '[CLS]' and '[SEP]' tokens
     at the beginning and the end of each sentence, respectively.
     """
     t_abstracts=[]
