@@ -1,7 +1,9 @@
 ![.](./images/sdg_many_berts.png)
 
 # SDGs many BERTs
-Train multiple [mBERT](https://huggingface.co/bert-base-multilingual-uncased) models for binary classification and deploy them for multiclass-multilabel classification. The _train_ scirpt uses as many models as there are classes in a training set. It overcomes a problem of imbalanced classes in multiclass-multilabel classificaiton by slicing the training data into smaller sets based on individual classes in the following manner: select all instances belonging to class 1; select randomly from the remaining classes the same number of instances as in class 1 to represent class 0. The scrips were written to classify SDG targets.
+Train multiple [mBERT](https://huggingface.co/bert-base-multilingual-uncased) models for binary classification and deploy them for multiclass-multilabel classification. The _train_multilabel_models_ scirpt uses as many models as there are classes in a training set. It overcomes a problem of imbalanced classes in multiclass-multilabel classificaiton by slicing the training data into smaller sets based on individual classes in the following manner: select all instances belonging to class 1; select randomly from the remaining classes the same number of instances as in class 1 to represent class 0. The scrips were written to classify SDG targets.
+
+Apart from this script, there is also the _train_multilabel_model_ script that is intended for training one multilabale model (17 independent probabilities as output) and _train_multiclass_model_ script that we used for training on Elsevier data (16 dependent probabilities as output, since SDG 17 in not present in this training data).
 
 #### Requirements
 Tensorflow 2.4.0, Transformers 4.5.0, NLTK 3.6.1, si-kit learn 0.24.1, Pandas, glob, time
