@@ -179,7 +179,7 @@ history=model.fit([train_inputs, train_masks], train_labels,
 
 
 model.save(SAVE_MODEL_TO+"mbert_multiclass_16.h5")
-print(f"Model saved.")
+print("Model saved.")
 
 test_score=model.evaluate([test_inputs, test_masks], test_labels,
                             batch_size=8)
@@ -190,4 +190,4 @@ print("Model tested.")
 stats=pd.DataFrame(test_score, columns=["loss", "accuracy", "precision", "recall"])
 stats.to_excel(SAVE_MODEL_TO+"mbert_multiclass_16_stats.xlsx", index=False)
 
-print("stats saved")
+print("Stats saved.")
